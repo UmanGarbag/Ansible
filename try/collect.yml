@@ -1,0 +1,22 @@
+---
+
+- name: "Sytem Information"
+  hosts: all
+  become: false
+  gather_facts: yes
+  tasks:
+    - name: "Name of the machine"
+      debug:
+        msg:
+          - Machine name is {{ ansible_facts['nodename'] }}
+          - IP of the host is {{ ansible_facts['default_ipv4']['address'] }}
+          - The Gateway is {{ ansible_facts['default_ipv4']['gateway'] }}
+          - Architecture is {{  ansible_facts['architecture'] }}
+          - Size of disk {{ ansible_facts['devices']['dm-0']['size'] }}
+          - Disk Partitions {{  ansible_facts['devices']['dm-0']['holders'] }}
+          - Size of VG0-root {{ ansible_facts['devices']['dm-1']['size'] }}
+          - Size of VG0-home {{ ansible_facts['devices']['dm-2']['size'] }}
+          - PWD {{ ansible_facts['env']['PWD']}}
+          - SHELL {{ ansible_facts['env']['SHELL']}}
+          - HOME {{ ansible_facts['env']['HOME']}}
+          - USER {{ ansible_facts['env']['USER']}}
